@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+jar {
+    manifest {
+        attributes 'Manifest-Version': 0.01,
+                'Main-Class': 'com.uniview.Parasect'
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task gen(type:Exec, dependsOn:'jar'){
+
+    group = 'Ban'
+
+    workingDir '../thrift'
+    commandLine 'cmd', '/c', 'generate.bat'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.github.javaparser:javaparser-core:2.4.0'
+    compile 'org.freemarker:freemarker:2.3.24-incubating'
+    compile 'commons-io:commons-io:2.4'
+}

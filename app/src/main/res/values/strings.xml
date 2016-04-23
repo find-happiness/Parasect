@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Parasect</string>
+
+    <string name="nickname">Nickname</string>
+    <string name="login">Login</string>
+    <string name="host">host</string>
+    <string name="port">port</string>
+</resources>
