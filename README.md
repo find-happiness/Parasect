@@ -2,11 +2,19 @@
 
 ## How To ##
 
-### 0x00 Generate Java Base On xxxxx.thrift ###
+### 0x00 Generate Java Code ###
 
-![Auto-Generate Java](md/generate.png)  
+![Files](md/files.png)
 
-### 0x01 Add Dependency {project}/app/build.gradle ###
+```bash
+::on  windowns:
+thrift -gen java example.thrift
+java -jar parasect.jar example.thrift
+```
+
+![output](md/output.png)  
+
+### 0x01 Add Dependency  ###
 
 ```groovy
 buildscript {
@@ -67,7 +75,7 @@ dependencies {
 /**
  * Description : login presenter
  *
- * @author T02452 on 4/21/2016.
+ * @author Ban on 4/21/2016.
  */
 public class LoginPresenter implements LoginP {
 
@@ -80,10 +88,9 @@ public class LoginPresenter implements LoginP {
 
     @Override
     public void login(String host, int port, String username, String password) {
-        RxThrift.ber4imosLogin = new RxThrift.Builder(host, port);
-
+        RxThrift.ber4SerOne = new RxThrift.Builder(host, port);
         // TODO: 4/22/2016 show loading
-        RximosLogin.userLogin(username, password, "")
+        RxSerOne.login(username, password)
                 .map(str -> {
                     // work thread
                     Log.d(TAG, "MAIN THREAD ? " + String.valueOf(Looper.myLooper() == Looper.getMainLooper()));

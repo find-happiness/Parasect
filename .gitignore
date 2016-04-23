@@ -17,3 +17,4 @@
 /captures
 .local.properties
 local.properties
+*.html

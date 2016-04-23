@@ -1,7 +1,3 @@
-/**
- * Name： com.uniview.thrifttail
- * Copyright： (c) 2015, Uniview Tech, RD IMOS. All rights reserved.
- */
 package com.domain.parasect;
 
 import android.os.Looper;
@@ -17,7 +13,7 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * Description : login presenter
  *
- * @author T02452 on 4/21/2016.
+ * @author Ban on 4/21/2016.
  */
 public class LoginPresenter implements LoginP {
 
@@ -30,7 +26,7 @@ public class LoginPresenter implements LoginP {
 
     @Override
     public void login(String host, int port, String username, String password) {
-        //RxThrift.ber4SerOne = new RxThrift.Builder(host, port);
+        RxThrift.ber4SerOne = new RxThrift.Builder(host, port);
         // TODO: 4/22/2016 show loading
         RxSerOne.login(username, password)
                 .map(str -> {
