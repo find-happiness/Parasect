@@ -13,7 +13,7 @@ import rx.schedulers.Schedulers;
 /**
  * Description : DON'T EDIT IF UNNECESSARY !
  *
- * @author Parasect.jar  Sat Apr 23 12:00:58 CST 2016.
+ * @author Parasect.jar  Tue Oct 11 17:15:56 CST 2016.
  */
 public class RxThrift {
 
@@ -57,54 +57,26 @@ public class RxThrift {
 
 
 
-    public static Builder ber4SerOne;
-    private SerOne.Client SerOneClient = null;
+    public static Builder ber4UserService;
+    private UserService.Client UserServiceClient = null;
 
     /**
-     * SerOne interface
+     * UserService interface
      *
      * @param <T> the type of you want to return
      */
-    interface SerOneAction<T extends Object> {
-        T op(SerOne.Client client) throws TException;
+    interface UserServiceAction<T extends Object> {
+        T op(UserService.Client client) throws TException;
     }
 
-    <T> Observable.OnSubscribe<T> sub4SerOne (SerOneAction<T> action) {
+    <T> Observable.OnSubscribe<T> sub4UserService (UserServiceAction<T> action) {
         return subscriber -> {
             try {
-                transport = new TSocket(ber4SerOne.host, ber4SerOne.port, ber4SerOne.TIME_OUT);
+                transport = new TSocket(ber4UserService.host, ber4UserService.port, ber4UserService.TIME_OUT);
                 protocol = new TBinaryProtocol(transport);
-                SerOneClient = new SerOne.Client(protocol);
+                UserServiceClient = new UserService.Client(protocol);
                 transport.open();
-                subscriber.onNext(action.op(SerOneClient));
-            } catch (Exception e) {
-                subscriber.onError(e);
-            }
-            subscriber.onCompleted();
-        };
-    }
-
-
-    public static Builder ber4SerTwo;
-    private SerTwo.Client SerTwoClient = null;
-
-    /**
-     * SerTwo interface
-     *
-     * @param <T> the type of you want to return
-     */
-    interface SerTwoAction<T extends Object> {
-        T op(SerTwo.Client client) throws TException;
-    }
-
-    <T> Observable.OnSubscribe<T> sub4SerTwo (SerTwoAction<T> action) {
-        return subscriber -> {
-            try {
-                transport = new TSocket(ber4SerTwo.host, ber4SerTwo.port, ber4SerTwo.TIME_OUT);
-                protocol = new TBinaryProtocol(transport);
-                SerTwoClient = new SerTwo.Client(protocol);
-                transport.open();
-                subscriber.onNext(action.op(SerTwoClient));
+                subscriber.onNext(action.op(UserServiceClient));
             } catch (Exception e) {
                 subscriber.onError(e);
             }

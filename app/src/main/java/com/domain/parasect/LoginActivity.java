@@ -30,7 +30,8 @@ public class LoginActivity extends AppCompatActivity implements LoginV {
         String host = ((EditText) findViewById(R.id.et_host)).getText().toString();
         int port = Integer.valueOf(((EditText) findViewById(R.id.et_port)).getText().toString());
         String username = ((EditText) findViewById(R.id.et_username)).getText().toString();
-        String password = MD5.md5(((EditText) findViewById(R.id.et_password)).getText().toString());
+        //String password = MD5.md5(((EditText) findViewById(R.id.et_password)).getText().toString());
+        String password = ((EditText) findViewById(R.id.et_password)).getText().toString();
         loginP.login(host, port, username, password);
     }
 
